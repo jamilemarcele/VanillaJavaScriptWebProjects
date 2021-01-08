@@ -8,6 +8,7 @@ const calculateWealthBtn = document.getElementById('calculate-wealth');
 // Array with the user, name, money
 let data = [];
 
+// Fetch random user and add money
 const getRandomUser = async () => {
     const res = await fetch('https://randomuser.me/api');
     const data = await res.json();
@@ -20,6 +21,15 @@ const getRandomUser = async () => {
     };
 
     addData(newUser);
+}
+
+// Double everyones money
+const doubleMoney = () => {
+    data = data.map(user => {
+       return { ...user, money: user.money * 2 };
+    });
+
+    updateDom();
 }
 
 // Add new obj to data arr
@@ -49,3 +59,5 @@ const formatMoney = (number) => {
 
 // Event listener
 addUserBtn.addEventListener('click', getRandomUser);
+doubleBtn.addEventListener('click', doubleMoney);
+
